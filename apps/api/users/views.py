@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
-# Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 
 
-def login(res): 
-    return HttpResponse("Helloo world") 
+class Login(LoginView):
+    http_method_names = ["post"]
+
+    @csrf_exempt
+    def post(request):
+        return HttpResponse("Hello again")
